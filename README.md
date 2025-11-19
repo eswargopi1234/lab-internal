@@ -1,2 +1,109 @@
-# lab-internal
-e commerce website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce Demo</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f3f3;
+    }
+
+    header {
+        background: #2c3e50;
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .product-card {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+
+    button {
+        background: #27ae60;
+        padding: 9px 14px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    button:hover {
+        background: #1e8449;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Shop</h1>
+    <div class="cart">🛒 Cart: <span id="cart-count">0</span></div>
+</header>
+
+<section class="products" id="product-list">
+    <!-- Products appear here -->
+</section>
+
+<script>
+    // Simple product list
+    const products = [
+        { id: 1, name: "Smart Watch", price: 120, img: "https://via.placeholder.com/300x200" },
+        { id: 2, name: "Shoes", price: 80, img: "https://via.placeholder.com/300x200" },
+        { id: 3, name: "Bluetooth Speaker", price: 45, img: "https://via.placeholder.com/300x200" },
+        { id: 4, name: "T-Shirt", price: 25, img: "https://via.placeholder.com/300x200" },
+    ];
+
+    let cartCount = 0;
+    const productList = document.getElementById("product-list");
+
+    // Render products
+    products.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Price: $${product.price}</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        `;
+
+        productList.appendChild(card);
+    });
+
+    // Add to cart function
+    function addToCart() {
+        cartCount++;
+        document.getElementById("cart-count").textContent = cartCount;
+    }
+</script>
+
+</body>
+</html>
